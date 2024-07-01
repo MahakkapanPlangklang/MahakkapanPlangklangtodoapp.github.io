@@ -18,6 +18,9 @@
         const eInput2 = parseFloat(document.getElementById("input2").value) || 0;
         const sum = eInput1 + eInput2;
         document.getElementById('output').value = sum;
+        
+        document.getElementById("input1").value = '';
+        document.getElementById("input2").value = '';
       }
       
       const multip = (a,b) => { return a*b;} 
