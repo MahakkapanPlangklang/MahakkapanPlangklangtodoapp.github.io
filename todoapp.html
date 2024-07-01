@@ -15,14 +15,30 @@
     <script>
       function addtodo() {
         const inputValue = document.getElementById("input").value;
-        //create new element <li>
-        let newElement = document.createElement("li"); //<li></li>
-        newElement.classList.add("list-group-item"); //<li class="list-group-item"></li>
-        let newTxtElement = document.createTextNode(inputValue); //create Text
-        newElement.appendChild(newTxtElement); //<li>Text</li>
+        if (inputValue.trim() === "") return;
 
+        // Create new element <li>
+        let newElement = document.createElement("li"); //<li></li>
+        newElement.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center"); //<li class="list-group-item d-flex justify-content-between align-items-center"></li>
+        
+        let newTxtElement = document.createTextNode(inputValue); // Create Text
+        newElement.appendChild(newTxtElement); //<li>Text</li>
+        
+        // Create delete button
+        let deleteBtn = document.createElement("button");
+        deleteBtn.classList.add("btn", "btn-danger", "btn-sm");
+        deleteBtn.innerHTML = "Delete";
+        deleteBtn.onclick = function() {
+          this.parentElement.remove();
+        };
+        newElement.appendChild(deleteBtn);
+        
+        // Append the new element to the list
         let listElement = document.getElementById("listtodo");
         listElement.appendChild(newElement);
+
+        // Clear the input field
+        document.getElementById("input").value = "";
       }
     </script>
     <div class="container">
@@ -50,7 +66,10 @@
         </div>
         <div class="col col-md-8 col-sm-12">
           <ul class="list-group" id="listtodo">
-            <li class="list-group-item">An item</li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              An item
+              <button class="btn btn-danger btn-sm" onclick="this.parentElement.remove()">Delete</button>
+            </li>
           </ul>
         </div>
       </div>
