@@ -12,11 +12,14 @@
       var i = "test";
       let j = 2;
       const k = 3;
-      
+
       function plus(){
-        const eInput1 = document.getElementById("input1").value;
-        document.getElementById('output').value = eInput1;
+        const eInput1 = parseFloat(document.getElementById("input1").value) || 0;
+        const eInput2 = parseFloat(document.getElementById("input2").value) || 0;
+        const sum = eInput1 + eInput2;
+        document.getElementById('output').value = sum;
       }
+      
       const multip = (a,b) => { return a*b;} 
       console.log(i, j, k, multip(2,2));
     </script>
